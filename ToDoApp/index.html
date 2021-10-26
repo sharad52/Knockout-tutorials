@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <style>
+        .container {
+            margin: 0 20px;
+            padding: 0 15px;
+        }
+        table th {
+            font-weight: 900;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+        table th,td {
+            align-items: center;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Todo Application</h2>
+    </div>
+    <!-- form data -->
+    <form data-bind="submit: addTask">
+        Add Task: <input data-bind="value: newTaskText" placeholder="Enter your Tasks">
+        <button type="submit">Add</button>
+    </form>
+    <ul data-bind="foreach: tasks,visible: tasks().length > 0">
+        <li>
+            <input type="checkbox" data-bind="checked: isDone">
+            <input data-bind="value: title,disable:isDone"/>
+            <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+        </li>
+    </ul>
+    You have <b data-bind = "text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+    <span data-bind="visible: incompleteTasks().length == 0">There is no Task left</span>
+    <button data-bind="click: save">Save</button>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../knockout-3.5.1.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

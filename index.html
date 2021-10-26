@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnockOut Tutorials</title>
+</head>
+<body>
+    <h2>Knock Out Tutorials </h2>
+    <!-- List and collections  -->
+    <h2>Your Seat Reservation (<span data-bind="text: seats().length "></span>)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Passenger Name </th>
+                <th>Meal</th>
+                <th>Surcharge</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: seats">
+            <tr>
+                <td><input data-bind="value: name"/></td>
+                <td><select data-bind="options: $root.availableMeals,value: meal,optionsText:'mealName' "></select></td>
+                <td data-bind="text: formattedPrice"></td>
+                <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button data-bind="click: addSeat,enable: seats().length < 6">Reserve another Seat</button>
+    <h3 data-bind=" visible: totalPrice() > 0">
+        Total surcharge: $<span data-bind="text: totalPrice().toFixed(2)"></span>
+    </h3>
+    <!-- knockout -->
+    <script src="./knockout-3.5.1.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

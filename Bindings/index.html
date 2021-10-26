@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KO-Bindings</title>
+    <style>
+        .container {
+            margin: 0 20px;
+            padding: 0 15px;
+        }
+        table th {
+            font-weight: 900;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+        table th,td {
+            align-items: center;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>Cricket Score Board</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th><th>Role</th><th>Runs</th><th>Balls</th><th>4s</th><th>6s</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: statics">
+                    <td><select data-bind="options: $root.playingXI,value:player,optionsText:'playerName'"></select></td>
+                    <td data-bind="text: player().role"></td>
+                    <td><input data-bind="value:run"/></td>
+                    <td><input data-bind="value:ballPlayed"></td>
+                    <td><input data-bind="value: fours"></td>
+                    <td><input data-bind="value: sixers"></td>
+                    <td><a href="#" data-bind="click: $root.removeStat">Remove</a></td>
+                </tbody>
+            </table>
+            <button data-bind="click: $root.addScore,enable: statics().length < 11">Add Player Statics</button>
+            <h2 data-bind="visible: totalScore() >12">Total Runs: (<span data-bind="text: totalScore()"></span>)</h2>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <!-- Ko library -->
+    <script src="../knockout-3.5.1.js"></script>
+    <!-- coustom Script -->
+    <script src="./app.js"></script>
+</body>
+</html>
